@@ -1,0 +1,206 @@
+:host {
+  display: block;
+  overflow: auto;
+}
+
+input {
+  width: 250px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0 0 0 8px;
+}
+html {
+	overflow: auto;
+	text-align: center;
+
+}
+.wrapper {
+	text-align: center;
+}
+.page {
+	/*display: -webkit-flex;
+  display: flex;*/
+	max-width: 1366px;
+	margin-top:20px!important;
+	display: flex;
+	justify-content: center;
+	margin: auto;
+}
+
+@media screen and (max-width: 885px) {
+	.page {
+		flex-direction: column;
+		margin-top:0px!important;
+	}
+	.left {
+		margin-left:0px!important;
+	}
+}
+
+.chat {
+	max-width: 500px;
+	max-height: 650px;
+	/*margin: 5% auto; */ 
+	background-color: #fff;
+	float: left;
+	border: 2px solid #e1e1e1;
+	margin-top: 50px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	/*overflow: auto;*/
+}
+
+.header {
+	background-color: #106cc8;
+	padding: 5px 5px;
+	color: #fff;
+}
+
+.question input {
+	padding: 5px;
+	margin: 10px 15px;
+	width: 80%;
+}
+/*.container {
+	background-color: #A0A0A0;
+}*/
+.result {	
+	background-color: #ECECEC;
+	margin:10px 10px;
+	padding: 10px 5px;
+	border-radius: 10px;
+}
+.conversation {
+	overflow-y: auto;
+	max-height: 350px;
+	min-height: 200px;
+}
+.askedQuestion {
+	max-height: 200px;
+	background-color: #BDD8DA;
+	padding: 10px 5px;
+	max-width: 400px;
+	margin-left: 70px;
+	border-radius: 10px;
+}
+
+.typing-container {
+  width: 50px;
+  height: 25px;
+  margin-left: 3px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.typing-indicator {
+  width: 13px;
+  height: 10px;
+  background-color: #B5B5B5;
+  border-radius: 13px;
+  margin-top: 10px;
+  margin-left: 3px;
+  animation: 2s jump infinite;
+}
+
+.typing-indicator:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.typing-indicator:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+
+.typing-indicator:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes jump {
+  0% {
+    margin-top: 10px;
+  }
+  10% {
+    margin-top: 0px;
+  }
+  20% {
+    margin-top: 10px;
+  }
+  100% {
+    margin-top: 10px;
+  }
+}
+.feedback {
+	background-color: none;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.buttons {
+	height: 100%;
+	margin-left:120px;
+}
+.text {
+	color: #000;
+	padding-top:10px;
+}
+.happy {
+	background: url("/app/images/happy.png") no-repeat;
+	background-size: 60px 60px;
+	width: 60px;
+	margin-right: 30px;
+	height: 70px;
+	border: none;
+}
+button:focus {
+	outline: none;
+}
+
+.even {
+	background: url("/app/images/even.png") no-repeat;
+	background-size: 60px 60px;
+	width: 60px;
+	height: 70px;
+	margin-right: 30px;
+}
+.sad {
+	margin-right: 30px;
+	background: url("/app/images/sad.png") no-repeat;
+	background-size: 60px 60px;
+	width: 60px;
+	height: 70px;
+}
+.left {
+	float: left;
+	text-align: left;
+	margin-left:10px;
+}
+.instructions {
+	max-width: 650px;
+	margin: auto;
+	background-color: #fff;
+	padding: 20px;
+	border: 2px solid #e1e1e1;
+}
+.examples {
+	max-width: 650px;
+	/*height: 300px;*/
+	margin: auto;
+	min-width: 200px;
+	margin-top: 10px;
+	background-color: #fff;
+	padding: 20px;
+	border: 2px solid #e1e1e1;
+}
+ul {
+	margin-left: 10px;
+	list-style-type: square;	
+}
+
+.improve {
+	margin-left: 10px;
+}

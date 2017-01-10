@@ -1,0 +1,12 @@
+<form #feedback ="ngForm" >
+	<div class ="feedback">
+		<!-- <p class = "text">Apart from being a super cool opensource project, this is also my school project and I need to evaluate the accuracy. Can you help me with that?</p> -->
+		<br><br><br>
+		<div class="buttons">
+		<button class="happyFace" [@icon]="state" (click)="results()"></button>
+			<ul><li *ngFor="let result of result">Feeling: {{ result.feeling }}, Questions: {{ result.questions }}</li></ul>
+			
+			<!-- <button class="happyFace2"></button> -->
+		</div>
+	</div>
+</form>

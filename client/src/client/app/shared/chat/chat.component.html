@@ -1,0 +1,41 @@
+<div class="chat">
+	<div class="header">
+		<p>Personal chatbot for learning Angular</p>
+	</div>
+	<div class="container">
+		<div class="conversation" #conversation>
+			<div class="result">Hi there! Why don't you start asking me some questions about Angular?</div>
+			<div *ngFor="let question of listOfQuestions; let k = index; let l = last" class="section">
+				<div *ngIf = "question" class="askedQuestion">{{ question }}</div>
+				<div *ngIf = "!listOfResults[k] && question" class="result" >
+					<div class="typing-container">
+					    <div class="typing-indicator"></div>
+					    <div class="typing-indicator"></div>
+					    <div class="typing-indicator"></div>
+					</div>
+				</div>
+				<div *ngIf = 'listOfResults[k]' class ="result">{{ listOfResults[k] }}</div>
+			</div>
+		</div>
+		<div class="question">
+				<form #questions ="ngForm" >
+		  			<input autocomplete="off" [(ngModel)]="newQuestion" name="newQuestion" placeholder="Question" autofocus>
+		  			<button class="ask" type="submit"(click)="askQuestion(questions.value)">Ask</button>
+		  		</form>	
+		</div>	
+  		<hr>
+  		<form #feedback ="ngForm">
+	  		<div *ngIf="!session" class ="feedback">
+  				<p class = "text">What do you think about the bot?</p>
+  				<div class="buttons">
+  					<button  [@icon]="happyState" (click)="getFeedback('happy')">It's Great</button>
+	  				<button  [@icon]="evenState" (click)="getFeedback('even')">It's Ok</button>
+	  				<button  [@icon]="sadState" (click)="getFeedback('sad')">It's Not Ok</button>
+  				</div>
+  			</div>
+  			<div *ngIf="session">
+  				<p class='improve'>Thank you for your feedback. It will be used to improve NgBot!</p>
+  			</div>
+  		</form>
+	</div>
+</div>	
