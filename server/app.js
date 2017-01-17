@@ -1,8 +1,8 @@
 var cors = require('cors');
-var search = require('./search.js');
+//var search = require('./search.js');
 var Promise = require('promise');
 var summarize = require ("text-summary");
-var elasticsearch = require('elasticsearch');
+//var elasticsearch = require('elasticsearch');
 //var db = require('./db');
 var db = require('./db');
 var feedback = require('./feedback');
@@ -10,6 +10,7 @@ var express = require('express');
 
 const bodyParser= require('body-parser');
 var app = express();
+var Glossary = require('./glossary');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -20,10 +21,10 @@ var app2 = apiai("eded6047c036427c88aa698e65f17af3");
  
 //var search = require('./search.js');
 
-var client = new elasticsearch.Client({
-  host: 'localhost:9200',
-  log: 'trace'
-});
+// var client = new elasticsearch.Client({
+//   host: 'localhost:9200',
+//   log: 'trace'
+// });
 
 app.use(cors());
 var question;
@@ -40,8 +41,9 @@ app.post('/search', function (req, res) {
 			var numberKeyWords = Object.keys(parameters).length;
 			var searchWord = parameters['basics'];
 			if(action === 'search') {
-				search.elasticsearch(searchWord, function(result) {
-					if(result) {
+				var result = Glossary.get(searchWord);
+				console.log(result);
+				if(result) {
 						// avarage length of sentence: 17 words, avarage length of word: 6 
 						// => 102 character per sentence, we consider 4 sentences for enough
 						if(result.length > 407) {
@@ -49,13 +51,11 @@ app.post('/search', function (req, res) {
 						}
 						result = result.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&mdash;/g,"- ");
 						var answer = { result };
-					} else {
-						var answer = {"result": "I can't resolve this."};
-						console.log(answer);
-					}
-					res.send(answer);
-				  
-  				})
+				} else {
+					var answer = {"result": "I can't resolve this."};
+				}
+				res.send(answer);
+				
 			} else if(action === 'getName') {
 						var answer = {"result": "My name is NgBot"};
 						res.send(answer);
