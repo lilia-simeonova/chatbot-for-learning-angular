@@ -26,6 +26,7 @@ import { Http, Headers, Response } from '@angular/http';
  ],
   styleUrls: ['chat.component.css'],
 })
+
 export class ChatComponent {
   state: string = 'inactive';
 
@@ -43,11 +44,12 @@ export class ChatComponent {
   newQuestion: string;
   listOfQuestions: string[] = [];
   listOfResults: string[] = []; 
+  links: string[] = [];
   happyState: string;
   evenState: string;
   sadState: string;
   session: boolean = false;
-  
+  link: any;
   askQuestion(value: any) {
     value.newQuestion = value.newQuestion.trim();
     if(value.newQuestion) { 
@@ -55,10 +57,22 @@ export class ChatComponent {
       this.listOfQuestions.push(this.newQuestion);
       this.newQuestion = '';
       setTimeout(() => this.scrollBottom());
-
       this.chat.send(value.newQuestion)
         .subscribe((res: Response) => { 
           this.result = res;
+          var myRegexp = /https.*$/g;
+          this.link = myRegexp.exec(this.result);
+          this.result = this.result.replace(/https.*$/g, "");
+          if(this.link) {
+            this.links.push(this.link);
+          } else {
+            this.links.push(null);
+          }
+          
+          
+          console.log('result:', this.result);
+          console.log("link", this.links);
+         // console.log("My result is:", this.result, "link is:", link[0]);
           this.listOfResults.push(this.result);
           setTimeout(() => this.scrollBottom());
         } , (err: any) => {console.log(err); this.listOfResults.push("Sorry, but there is connection problem. Try again later.")});

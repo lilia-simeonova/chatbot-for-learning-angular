@@ -1,5 +1,6 @@
 var scrapy = require('node-scrapy');
 var HashMap = require('hashmap');
+var Glossary = require('./glossary');
 
 var url = 'https://angular.io/about/';
 var model = { title: '.bio-card-name', content: '.bio-card-content' };
@@ -13,15 +14,15 @@ scrapy.scrape(url, model, function(err, data) {
             var contents = data['content'];
             for(var i = 0; i < titles.length; i++) {
                 var title = titles[i];
-                // title = title.toLowerCase();
+                title = title.toLowerCase();
                 // title = title.replace(/ \(|\) /g, "-");
-                // title = title.replace(/ /g, "-");
+                title = title.replace(/ /g, "-");
                 // title = title.replace(/-\|-/g, "-");
-                console.log(title, contents[i]);
+                console.log(title,"--------" ,contents[i]);
                 console.log('--------------');
-                //Glossary.set(title, contents[i]);
+                Glossary.set(title, contents[i]);
             }
-           // Glossary.save();
+           Glossary.save();
             console.log('success');
         }
     });

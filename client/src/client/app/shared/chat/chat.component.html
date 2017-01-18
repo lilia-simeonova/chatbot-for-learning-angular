@@ -14,7 +14,12 @@
 					    <div class="typing-indicator"></div>
 					</div>
 				</div>
-				<div *ngIf = 'listOfResults[k]' class ="result">{{ listOfResults[k] }}</div>
+				<div *ngIf = 'listOfResults[k]' class ="result">{{ listOfResults[k] }}
+					
+					<a *ngIf = 'links[k]' [attr.href]="links[k]"> Find more here </a>
+				</div>
+				
+				
 			</div>
 		</div>
 		<div class="question">
