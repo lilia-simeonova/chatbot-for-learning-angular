@@ -60,20 +60,18 @@ export class ChatComponent {
       this.chat.send(value.newQuestion)
         .subscribe((res: Response) => { 
           this.result = res;
+          console.log(this.result);
           var myRegexp = /https.*$/g;
           this.link = myRegexp.exec(this.result);
+
           this.result = this.result.replace(/https.*$/g, "");
           if(this.link) {
             this.links.push(this.link);
           } else {
             this.links.push(null);
           }
-          
-          
-          console.log('result:', this.result);
-          console.log("link", this.links);
-         // console.log("My result is:", this.result, "link is:", link[0]);
           this.listOfResults.push(this.result);
+          console.log(this.link);
           setTimeout(() => this.scrollBottom());
         } , (err: any) => {console.log(err); this.listOfResults.push("Sorry, but there is connection problem. Try again later.")});
       }

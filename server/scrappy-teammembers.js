@@ -19,7 +19,6 @@ scrapy.scrape(url, model, function(err, data) {
                 title = title.replace(/ /g, "-");
                 // title = title.replace(/-\|-/g, "-");
                 console.log(title,"--------" ,contents[i]);
-                console.log('--------------');
                 Glossary.set(title, contents[i]);
             }
            Glossary.save();

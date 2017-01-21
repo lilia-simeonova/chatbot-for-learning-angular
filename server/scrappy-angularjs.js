@@ -16,21 +16,22 @@ scrapy.scrape(url, model, function(err, data) {
                 var title = titles[i];
                 var content = contents[j];
                 title = title.toLowerCase();
+                var link = title;
                 title = "angularjs-" + title;
                 //title = title.replace(/ \(|\) /g, "-");
                 title = title.replace(/ /g, "-");
+                link = link.replace(/ /g, "-");
                 if(content) {
                     content = content.replace(/Angular 2/g, "Angular");
-                    content = content +  "https://angular.io/docs/ts/latest/cookbook/a1-a2-quick-reference.html";
+                    content = content +  "https://angular.io/docs/ts/latest/cookbook/a1-a2-quick-reference.html#" + link ;
                 }
-                
-               
                // console.log(title);
-              console.log(title, "------",content);
-               // console.log('--------------');
-               Glossary.set(title, content);
+            //    console.log(title, "------",content);
+            //    console.log('--------------');
+            //    console.log(content);
+             Glossary.set(title, content);
             }
-           Glossary.save();
+        Glossary.save();
         console.log('success');
         }
     });

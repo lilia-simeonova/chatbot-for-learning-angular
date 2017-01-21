@@ -35,12 +35,15 @@ scrapy.scrape(url, model, function(err, data) {
             var contents = data['content'];
             for(var i = 0; i < titles.length; i++) {
                 var title = titles[i];
+                var content = contents[i];
                 title = title.toLowerCase();
                 title = title.replace(/ \(|\) /g, "-");
                 title = title.replace(/ /g, "-");
                 title = title.replace(/-\|-/g, "-");
-                console.log(title);
-                Glossary.set(title, contents[i]);
+                content = content + "https://angular.io/docs/ts/latest/guide/glossary.html#" + title;
+                //console.log(content);
+                //console.log("----------------------");
+               Glossary.set(title, content);
             }
             Glossary.save();
             console.log('success');

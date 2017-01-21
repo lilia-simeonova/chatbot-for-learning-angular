@@ -8,7 +8,7 @@ var Glossary = require('./glossary');
 
 console.log(Glossary.get('Template'));
 
-process.exit(0);
+//process.exit(0);
 
 const bodyParser= require('body-parser');
 var app = express();
@@ -20,44 +20,39 @@ var client = new es.Client({
   log: 'trace'
 });
 
-var result;
+var result = Glossary.get('Template');
 
-// var map = new HashMap();
-
-// map.set("some_key", "some value");
-// map.get("some_key"); // --> "some value" 
-
-// exports.elasticsearch = function (question, callback) {
-// 	client.search({
-// 		index: "glossary",
-// 		body: {
-// 		 	query: {
-// 		 		"match": {	
-// 		 			"title": question + ".html"
-// 	 				}
-// 		 		} 
-// 		}	 
-// 		}, function (error, response) {
-// 	 		if(error) {
-// 	 			console.log(error);
-// 				callback("Sorry, I have connection problems.");
-// 	 		} else {
-// 	 			if(response['hits']['hits'][0]) {
-// 	 				var title = response['hits']['hits'][0]['_source']['title'];
-// 	 				var content = response['hits']['hits'][0]['_source']['content'];
-// 	 				var result = content;
+exports.search = function (question, callback) {
+	client.search({
+		index: "glossary",
+		body: {
+		 	query: {
+		 		"match": {	
+		 			"title": question + ".html"
+	 				}
+		 		} 
+			}	 
+		}, function (error, response) {
+	 		if(error) {
+	 			console.log(error);
+				callback("Sorry, I have connection problems.");
+	 		} else {
+	 			if(response['hits']['hits'][0]) {
+	 				var title = response['hits']['hits'][0]['_source']['title'];
+	 				var content = response['hits']['hits'][0]['_source']['content'];
+	 				var result = content;
 					
-// 	 				if(result) {
-// 	 					console.log('my result is:', result);
-// 	 					callback(result);
-// 	 				} 
-// 	 			} else {
-// 					 callback("Sorry, try again.");
-// 				 }
-// 	 		}
-// 	 });
-// }
+	 				if(result) {
+	 					console.log('my result is:', result);
+	 					callback(result);
+	 				} 
+	 			} else {
+					 callback("Sorry, try again.");
+				 }
+	 		}
+	 });
+}
 
-// var response = function (result) {
-// 	console.log('my r is---------------------------:', result);
-// }
+var response = function (result) {
+	console.log('my r is---------------------------:', result);
+}

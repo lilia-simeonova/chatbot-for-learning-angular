@@ -30,8 +30,8 @@ reIndexing(function() {
 														index: 'glossary',
 														type: 'html',
 														body: {
-																		title: file,
-																		content: content
+															title: file,
+															content: content
 														}
 										}, function (error, response) {
 														if(error) {
