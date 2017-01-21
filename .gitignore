@@ -55,5 +55,5 @@ gulpfile.js.map
 client/src/client/app/shared/config/env.config.js
 client/src/client/app/shared/config/env.config.js.map
 server/glossary
-server/scrappy-teammembers
+server/scrappy-teammembers.js
 
